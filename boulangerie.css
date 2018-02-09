@@ -1,0 +1,170 @@
+#header .container {
+	display: flex;
+	background-color: rgb(179, 60, 0);
+	height: 100px;
+}
+
+#header .around {
+	display: flex;
+	margin: auto;
+	width: 40%;
+}
+
+#header p {
+	margin: auto;
+	color: rgb(255, 153, 255);
+}
+
+#header .round {
+	background-color: blue;
+	height: 160px;
+	width: 160px;
+	border-radius: 100px;
+	border: 20px solid rgb(179, 60, 0);
+	background-image: url("./ressources/logo.jpg");
+	background-size: 400px;
+	background-position: center;
+}
+
+#second {
+	display: flex;
+	height: 800px;
+	align-items: center;
+}
+
+#second p {
+	color: rgb(51, 102, 255);
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+/*
+#second p {
+	margin: 300px 100px 0px 100px;
+}*/
+
+/* https://www.creativejuiz.fr/blog/tutoriels/css3-creer-slideshow-automatique-controlable-transition */
+
+#slideshow {
+	position: relative;
+	width: 640px;
+	height: 310px;
+	padding: 15px;
+	margin: 0 auto 2em;
+	border: 1px solid #ddd;
+	background: #FFF;
+	background: linear-gradient(#FFF, #FFF 20%, #EEE 80%, #DDD);
+	border-radius: 2px 2px 2px 2px;
+	box-shadow: 0 0 3px rgba(0,0,0, 0.2);
+}
+
+#slideshow:before, #slideshow:after {
+	position: absolute;
+	bottom:16px;
+	z-index: -10;
+	width: 50%;
+	height: 20px;
+	content: " ";
+	background: rgba(0,0,0,0.1);
+	border-radius: 50%;
+	box-shadow: 0 0 3px rgba(0,0,0, 0.4), 0 20px 10px rgba(0,0,0, 0.7);
+}
+
+#slideshow:before {
+	left:0;
+	transform: rotate(-4deg);
+}
+
+#slideshow:after {
+	right:0;
+	transform: rotate(4deg);
+}
+
+/* gestion des dimensions et débordement du conteneur */
+
+#slideshow .container {
+	position:relative;
+	width: 640px;
+	height: 310px;
+	overflow: hidden;
+}
+
+/* petit espace gris pour la timeline */
+
+#slideshow .container:after {
+	position:absolute;
+	bottom: 0; left:0;
+	content: " ";
+	width: 100%;
+	height: 3px;
+	background: #999;
+}
+
+#timeline {
+	position: absolute;
+	background: #999;
+	bottom: 15px;
+	left: 15px;
+	height: 3px;
+	background: rgb(214,98,13);
+	background: rgba(214,98,13,.8);
+	width: 0;
+	animation: timeliner 16s infinite;
+}
+
+/* le conteneur des slides - largeur 100 * le nb de slide */
+
+#slideshow .slider {
+	border: 1px solid black;
+	position: absolute;
+	left:0; top:0;
+	width: 400%;
+	HEIGHT: 310px;
+	animation: slider 16s infinite;
+}
+
+/* annulation des marges sur image */
+
+#slideshow figure {
+	position:relative;
+	display:inline-block;
+	padding:0; margin:0;
+}
+
+/* styles des légendes */
+
+#slideshow figcaption {
+	position:absolute;
+	left:0; right:0; bottom: 5px;
+	padding: 20px;
+	margin:0;
+	border-top: 1px solid rgb(225,225,225);
+	text-align:center;
+	letter-spacing: 0.05em;
+	word-spacing: 0.05em;
+	font-family: Georgia, Times, serif;
+	background: #fff;
+	background: rgba(255,255,255,0.7);
+	color: #555;
+	text-shadow: -1px -1px 0 rgba(255,255,255,0.3);
+	animation: figcaptionner 16s infinite;
+}
+
+/* fonction d'animation */
+
+@keyframes slider {
+	0%, 15%, 100%	{ left: 0 }
+	30%, 40%	{ left: -100% }
+	55%, 65%	{ left: -200% }
+	80%, 90%	{ left: -300% }
+}
+
+@keyframes timeliner {
+	0%, 30%, 55%, 80%, 100%	{ width: 0;		}
+	15%, 40%, 65%, 90%	{ width: 640px;	}
+}
+
+@keyframes figcaptionner {
+	0%, 25%, 50%, 75%, 100%			{ bottom: -55px;	}
+	5%, 15%, 30%, 40%, 55%, 65%, 80%, 95%	{ bottom: 5px;		}
+}
