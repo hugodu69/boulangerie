@@ -1,3 +1,8 @@
+body {
+	background-image: url("./ressources/pain8.jpeg");
+	background-size: cover;
+}
+
 #header .container {
 	display: flex;
 	background-color: rgb(179, 60, 0);
@@ -10,9 +15,10 @@
 	width: 40%;
 }
 
-#header p {
+#header a, p {
 	margin: auto;
 	color: rgb(255, 153, 255);
+	text-decoration: none;
 }
 
 #header .round {
@@ -167,4 +173,134 @@
 @keyframes figcaptionner {
 	0%, 25%, 50%, 75%, 100%			{ bottom: -55px;	}
 	5%, 15%, 30%, 40%, 55%, 65%, 80%, 95%	{ bottom: 5px;		}
+}
+
+/*creation des boutons play et pause*/
+
+.play_commands {
+	/* positionnement en haut à droite */ 
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	z-index: 10;
+	opacity: 0;
+	/* dimensionnement des icônes */
+	width: 22px;
+	height: 22px;
+	border:0 none;
+	/* préparation de transition sur opacicty et right */
+	transition: opacity 1s, right 1s;
+}
+
+/* on décale play légèrement sur la gauche */
+
+.play { right: 55px; cursor: default; }
+
+/* création de l'icône pause avec 2 pseudos éléments */
+
+.pause:after, .pause:before {
+	position: absolute;
+	display: block;
+	content: " ";
+	width:38%;
+	height: 22px;
+	background: rgba(255,255,255,0.5);
+}
+
+.pause:after { right:0; }
+
+.pause:before {	left:0; }
+ 
+/* création de l'icône play avec des bordures */
+
+.play {
+	width: 1px; 
+	height: 1px; 
+	/* les transparentes forment la flèche */
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 20px solid rgba(255,255,255,0.5); 
+	opacity: 0;
+}
+ 
+/* apparition du bouton pause au survole */
+/* apparition des boutons au focus */
+
+#slideshow:hover .pause, .play_commands:focus {
+	opacity: 1;
+	outline: none;
+}
+
+/* stopper les animation */
+
+.sl_command:target ~ #slideshow .slider,
+.sl_command:target ~ #slideshow figcaption,
+.sl_command:target ~ #slideshow #timeline,
+.sl_command:target ~ #slideshow .dots_commands a:after {
+	animation-play-state: paused;
+}
+ 
+/* redémarrer les animations */
+
+#sl_play:target ~ #slideshow .slider,
+#sl_play:target ~ #slideshow figcaption,
+#sl_play:target ~ #slideshow #timeline,
+#sl_play:target ~ #slideshow .dots_commands a:after {
+	animation-play-state: running;
+}
+ 
+/* switch entre les boutons */
+
+.sl_command:target ~ #slideshow .pause {
+	opacity:0;
+}
+
+#sl_play:target ~ #slideshow:hover .pause,
+#sl_play:target ~ #slideshow .pause:focus {
+	opacity:1;
+}
+
+.sl_command:target ~ #slideshow .play {
+	opacity:1;
+	right: 25px;
+	cursor: pointer;
+}
+
+#sl_play:target ~ #slideshow .play {
+	opacity:0;
+	right: 55px;
+	cursor: default;
+}
+
+
+#third {
+	height: 1000px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	color: rgb(255, 153, 255);
+}
+
+#third div {
+	width: 70%;
+	height: 30%;
+}
+
+#food {
+	background-image: url("./ressources/pain5.jpeg");
+	background-size: 100%;
+	
+}
+
+#drinks {
+	background-image: url("./ressources/pain6.jpeg");
+	background-size: 100%;
+}
+
+#bakery {
+	background-image: url("./ressources/pain9.jpeg");
+	background-size: 100%;
+	background-position: 0 -150px;
 }
